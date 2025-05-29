@@ -5,7 +5,7 @@ DNA is a Windows&trade; desktop program that performs powerful data management o
 1. **Example Licensing Provider**  
    A publicly available GitHub repository named [Carbon.Example.Licensing.Provider][git1] contains a Carbon compatible licensing provider that uses SQL Server as the backing storage. The readme in the repo describes the conventions of the Carbon licensing system and providers.
 2. **Red Centre Licensing Provider**  
-   A proprietary licensing provider that is only used by applications hosted in the Red Centre Software Azure subscription.
+   A proprietary licensing provider that is only used by applications hosted in the [Red Centre Software][rcs] Azure subscription. There is a [NuGet package][nug1] available.
 
 Both of the providers implement the `ILicensingProvider` interface, so DNA can load and use them interchangeably. DNA uses a dialog to prompt for options specific to each provider and select the active one.
 
@@ -32,3 +32,6 @@ The following tables describe the options for each provider.
 *To be continued…*
 
 Last updated 29-May-2025
+
+[nug1]: https://www.nuget.org/packages/RCS.Licensing.Provider
+[rcs]: https://www.redcentresoftware.com/
