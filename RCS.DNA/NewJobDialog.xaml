@@ -1,0 +1,53 @@
+﻿<main:AppBaseWindow x:Class="RCS.DNA.NewJobDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:main="clr-namespace:RCS.DNA"
+        xmlns:model="clr-namespace:RCS.DNA.Model"
+        mc:Ignorable="d"
+        x:ClassModifier="internal"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Style="{StaticResource DialogStyle}"
+        ResizeMode="NoResize"
+        Title="{x:Static main:Strings.AppTitle}" Width="410">
+
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border Style="{StaticResource DialogHeadBorderStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Resources/Job32.png" Style="{StaticResource DialogHeadImageStyle}"/>
+                    <TextBlock Text="New Job" Style="{StaticResource DialogHeadTextStyle}"/>
+                </StackPanel>
+            </Border>
+            <Grid Grid.Row="1" Margin="20,10,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource DialogInstructStyle}" Text="{x:Static main:Strings.NewJobInstructions}"/>
+                <TextBlock Grid.Row="1" Text="{x:Static main:Strings.LabelAppCustomer}" Margin="0,6,0,0" Style="{StaticResource DialogLabelStyle}"/>
+                <ComboBox Grid.Row="2" Width="200" HorizontalAlignment="Left" x:Name="DropCustomer" Margin="0,4,0,0" ItemsSource="{Binding ObsCustomerPick}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding NewJobCustomerId,Mode=TwoWay}"/>
+                <TextBlock Grid.Row="3" Text="{x:Static main:Strings.LabelAppJobName}" Margin="0,12,0,0" Style="{StaticResource DialogLabelStyle}"/>
+                <TextBox Grid.Row="4" Margin="0,4,0,0" MaxLength="64" Padding="2,2,2,3" Text="{Binding NewJobName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox Grid.Row="5" Content="Create an Azure Container if it doesn't exist" Margin="0,16,0,0" IsChecked="{Binding NewJobMakeContainer,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Row="6" Content="Create" HorizontalAlignment="Center" Width="90" Height="32" Margin="0,20,0,0" Click="CreateJob_Click" IsDefault="True" Command="main:MainCommands.CreateJob" CommandTarget="{Binding Owner,RelativeSource={RelativeSource AncestorType={x:Type Window},AncestorLevel=1}}"/>
+            </Grid>
+            <Border Grid.Row="2" Style="{StaticResource DialogFootBorderStyle}">
+                <TextBlock Style="{StaticResource DialogFootTextStyle}" Text="{Binding NewJobErrors,Converter={StaticResource MainVerter},ConverterParameter=NewRecordErrorJoin|Job}" Foreground="{Binding NewJobErrors,Converter={StaticResource MainVerter},ConverterParameter=NewRecordErrorFore}"/>
+            </Border>
+        </Grid>
+    </Border>
+</main:AppBaseWindow>

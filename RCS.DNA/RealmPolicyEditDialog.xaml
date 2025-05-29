@@ -1,0 +1,39 @@
+﻿<main:AppBaseWindow x:Class="RCS.DNA.RealmPolicyEditDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:main="clr-namespace:RCS.DNA"
+        xmlns:model="clr-namespace:RCS.DNA.Model"
+        mc:Ignorable="d"
+        x:ClassModifier="internal"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Style="{StaticResource DialogStyle}"
+        Title="{x:Static main:Strings.AppTitle}"
+        MinWidth="350" MinHeight="250"
+        Width="450" Height="350">
+
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border Padding="10,4,10,6">
+                <TextBlock FontStyle="Italic" Style="{StaticResource DialogInstructStyle}" TextWrapping="Wrap" Text="See the DNA tool help web page for information about the currently defined policy Name-Value pairs."/>
+            </Border>
+            <DataGrid Grid.Row="1" ItemsSource="{Binding EditingRealm.ObsEditingPolicy}" CanUserResizeRows="False" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static main:Strings.LabelAppName}" Binding="{Binding Name}" MinWidth="120"/>
+                    <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal" Margin="6">
+                <Button Content="{x:Static main:Strings.ButtonOKLabel}" HorizontalAlignment="Right" Width="90" Height="32" Click="OKPolicyEdit_Click" Margin="0,0,6,0"/>
+                <Button Content="{x:Static main:Strings.ButtonCancelLabel}" HorizontalAlignment="Right" Width="90" Height="32" IsCancel="True"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</main:AppBaseWindow>

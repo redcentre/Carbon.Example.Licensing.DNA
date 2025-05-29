@@ -1,0 +1,176 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="System.Core" #>
+<#@ Assembly Name="System.Xml.dll" #>
+<#@ Assembly Name="System.Xml.Linq.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="$(ProjectDir)Common.ttinclude" #>
+<#
+	TTName = Host.GetType().Name;
+	TTVer = Host.GetType().Assembly.GetName().Version;
+	string filename = Host.ResolvePath("AppMetrics.xml");
+	var doc = XDocument.Load(filename);
+	var cats = doc.Root.Elements("category").Select(c => new GenCat
+	{
+		Id = (string)c.Attribute("id"),
+		Label = (string)c.Attribute("label"),
+		Props = c.Elements("property").Select(p => new GenProp
+		{
+			Type = (string)p.Attribute("type"),
+			Name = (string)p.Attribute("name"),
+			Default = (string)p.Attribute("default"),
+			Min = (double?)p.Attribute("min"),
+			Max = (double?)p.Attribute("max"),
+			Notify = (bool?)p.Attribute("notify") ?? false
+		}).ToArray()
+	}).ToArray();
+	EmitHeaders();
+#>
+using System;
+using System.CodeDom.Compiler;
+
+namespace RCS.DNA.Model;
+
+#nullable enable
+
+public partial class AppMetrics
+{
+<#
+	foreach (var cat in cats)
+	{
+		EmitCat(cat);
+	}
+#>
+}
+<#+
+//============================================================
+string TTName;
+Version TTVer;
+public sealed class GenCat
+{
+	public string Id { get; set; }
+	public string Label { get; set; }
+	public GenProp[] Props { get; set; }
+}
+public sealed class GenProp
+{
+	public string Type { get; set; }
+	public string Name { get; set; }
+	public string Default { get; set; }
+	public double? Min { get; set; }
+	public double? Max { get; set; }
+	public bool Notify { get; set; }
+	public string PrivName => "_" + Name.Substring(0,1).ToLower() + Name.Substring(1);
+}
+//============================================================
+void EmitCat(GenCat cat)
+{
+#>
+	#region <#=cat.Label#>
+<#+
+	foreach (var prop in cat.Props)
+	{
+		EmitProp(cat, prop);
+	}
+#>
+
+	#endregion
+	
+<#+
+}
+//============================================================
+void EmitProp(GenCat cat, GenProp prop)
+{
+	WriteLine("");
+	if (prop.Notify)
+	{
+#>
+	<#=prop.Type#> <#=prop.PrivName#><#=CalcDefault(prop)#>;
+<#+
+		EmitAttrs(cat,prop);
+#>
+	public <#=prop.Type#> <#=prop.Name#>
+	{
+		get => <#=prop.PrivName#>;
+		set
+		{
+<#+
+	if (prop.Min != null)
+	{
+#>
+			<#=prop.Type#> temp = value < <#=prop.Min#> ? <#=prop.Min#> : value > <#=prop.Max#> ? <#=prop.Max#> : value;
+			if (<#=prop.PrivName#> != temp)
+			{
+				<#=prop.PrivName#> = temp;
+				OnPropertyChanged(nameof(<#=prop.Name#>));
+			}
+<#+
+	}
+	else
+	{
+#>
+			if (<#=prop.PrivName#> != value)
+			{
+				<#=prop.PrivName#> = value;
+				OnPropertyChanged(nameof(<#=prop.Name#>));
+			}
+<#+
+	}
+#>
+		}
+	}
+<#+
+	}
+	else
+	{
+		EmitAttrs(cat, prop);
+#>
+	public <#=prop.Type#> <#=prop.Name#> { get; set; }<#=CalcDefault(prop, ";")#>
+<#+
+	}
+}
+//============================================================
+void EmitAttrs(GenCat cat, GenProp prop)
+{
+#>
+	[GeneratedCode("<#=TTName#>", "<#=TTVer#>")]
+	[LocalizedCategory(nameof(Strings.Metrics<#=cat.Id#>Category))]
+	[LocalizedDisplayName(nameof(Strings.Metrics<#=prop.Name#>Display))]
+	[LocalizedDescription(nameof(Strings.Metrics<#=prop.Name#>Desc))]
+<#+
+	if (prop.Default != null)
+	{
+		if (prop.Type.StartsWith("string"))
+		{
+#>
+	[DefaultValue("<#=prop.Default#>")]
+<#+
+		}
+		else
+		{
+#>
+	[DefaultValue(<#=prop.Default#>)]
+<#+
+		}
+	}
+}
+string CalcDefault(GenProp prop, string trail = "")
+{
+	if (prop.Default == null) return trail;
+	if (prop.Type.StartsWith("string"))
+	{
+	return " = \"" + prop.Default + "\"" + trail;
+	}
+	else
+	{
+		return " = " + prop.Default + trail;
+	}
+}
+#>

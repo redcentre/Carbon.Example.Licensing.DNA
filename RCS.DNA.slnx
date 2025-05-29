@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/" Id="8ec462fd-d22e-90a8-e5ce-7e832ba40c5d">
+    <File Path=".gitignore" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="RCS.DNA.Setup/RCS.DNA.Setup.vdproj" Type="Installer">
+    <Build Solution="Release|*" />
+  </Project>
+  <Project Path="RCS.DNA/RCS.DNA.csproj" />
+</Solution>

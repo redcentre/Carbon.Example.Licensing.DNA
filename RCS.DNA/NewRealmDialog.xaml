@@ -1,0 +1,50 @@
+﻿<main:AppBaseWindow x:Class="RCS.DNA.NewRealmDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:main="clr-namespace:RCS.DNA"
+        xmlns:model="clr-namespace:RCS.DNA.Model"
+        mc:Ignorable="d"
+        x:ClassModifier="internal"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Style="{StaticResource DialogStyle}"
+        ResizeMode="NoResize"
+        Title="{x:Static main:Strings.AppTitle}" Width="410">
+
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border Style="{StaticResource DialogHeadBorderStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Resources/Realm32.png" Style="{StaticResource DialogHeadImageStyle}"/>
+                    <TextBlock Text="New Realm" Style="{StaticResource DialogHeadTextStyle}"/>
+                </StackPanel>
+            </Border>
+            <Grid Grid.Row="1" Margin="20,10,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource DialogInstructStyle}" Text="Realms are used to help manage large numbers of users and customers by partitioning them into high-level groups."/>
+                <TextBlock Grid.Row="1" Text="Realm Name" Margin="0,12,0,0" Style="{StaticResource DialogLabelStyle}"/>
+                <TextBox Grid.Row="2" x:Name="TextRealmName" Margin="0,4,0,0" MaxLength="64" Padding="2,2,2,3" Text="{Binding NewRealmName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0,20,0,0" HorizontalAlignment="Center">
+                    <Button Content="Create" HorizontalAlignment="Center" Width="90" Height="32" Margin="0,0,4,0" Click="CreateRealm_Click" IsDefault="True" Command="main:MainCommands.CreateRealm" CommandTarget="{Binding Owner,RelativeSource={RelativeSource AncestorType={x:Type Window},AncestorLevel=1}}"/>
+                    <Button Content="{x:Static main:Strings.ButtonCancelLabel}" Width="90" Height="32" Margin="4,0,0,0" IsCancel="True"/>
+                </StackPanel>
+            </Grid>
+            <Border Grid.Row="2" Style="{StaticResource DialogFootBorderStyle}">
+                <TextBlock Style="{StaticResource DialogFootTextStyle}" Text="{Binding NewRealmErrors,Converter={StaticResource MainVerter},ConverterParameter=NewRecordErrorJoin|Realm}" Foreground="{Binding NewRealmErrors,Converter={StaticResource MainVerter},ConverterParameter=NewRecordErrorFore}"/>
+            </Border>
+        </Grid>
+    </Border>
+</main:AppBaseWindow>

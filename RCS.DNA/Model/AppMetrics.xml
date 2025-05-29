@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<metrics>
+  <category id="Application" label="Application Properties">
+    <property type="int" name="MaxLogItems" default="500" min="50" max="2000" notify="true"/>
+    <property type="int" name="MaxListBlobs" default="1000" min="500" max="20000" notify="true"/>
+    <property type="double" name="SaveDelaySeconds" default="1.5" min="0.5" max="5.0" notify="true"/>
+    <property type="string?" name="LicensingUri" default="https://rcsapps.azurewebsites.net/licensing2test/"/>
+    <property type="bool" name="AutoConnect" default="false"/>
+  </category>
+  <category id="Upload" label="Job Upload Properties">
+    <property type="string?" name="UploadDirNames" default="CaseData Reports Tables"/>
+    <property type="string?" name="UploadExtensions" default=".ini .vtr"/>
+  </category>
+  <category id="UserVisibility" label="User Visibility (Bindable)">
+    <property type="bool" name="ShowUserCustNames" default="true" notify="true"/>
+    <property type="bool" name="ShowUserJobNames" default="true" notify="true"/>
+    <property type="bool" name="ShowUserVartreeNames" default="true" notify="true"/>
+    <property type="bool" name="ShowUserDashboardNames" default="true" notify="true"/>
+    <property type="bool" name="ShowUserDataLocation" default="true" notify="true"/>
+    <property type="bool" name="ShowUserUid" default="true" notify="true"/>
+    <property type="bool" name="ShowUserEmail" default="true" notify="true"/>
+  </category>
+  <category id="CustVisibility" label="Customer Visibility (Bindable)">
+    <property type="bool" name="ShowCustInfo" default="true" notify="true"/>
+    <property type="bool" name="ShowCustLogo" default="true" notify="true"/>
+    <property type="bool" name="ShowCustSigninLogo" default="true" notify="true"/>
+    <property type="bool" name="ShowCustSigninNote" default="true" notify="true"/>
+    <property type="bool" name="ShowCustCloudNames" default="true" notify="true"/>
+    <property type="bool" name="ShowCustCorporation" default="true" notify="true"/>
+  </category>
+</metrics>

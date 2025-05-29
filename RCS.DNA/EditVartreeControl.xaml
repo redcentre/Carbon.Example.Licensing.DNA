@@ -1,0 +1,16 @@
+﻿<main:AppBaseControl x:Class="RCS.DNA.EditVartreeControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:main="clr-namespace:RCS.DNA"
+        mc:Ignorable="d"
+        x:ClassModifier="internal"
+        Background="Gainsboro"
+        d:DesignHeight="600" d:DesignWidth="900">
+    
+    <Grid>
+        <TextBlock Text="EditVartreeControl" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+    </Grid>
+    
+</main:AppBaseControl>

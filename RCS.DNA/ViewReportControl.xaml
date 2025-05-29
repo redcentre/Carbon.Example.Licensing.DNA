@@ -1,0 +1,55 @@
+<main:AppBaseControl x:Class="RCS.DNA.ViewReportControl"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:main="clr-namespace:RCS.DNA"
+            xmlns:kit="http://schemas.xceed.com/wpf/xaml/toolkit"
+            mc:Ignorable="d"
+            x:ClassModifier="internal"
+            Style="{StaticResource ViewControlStyle}"
+            d:DesignHeight="450" d:DesignWidth="920">
+
+    <Grid IsEnabled="{Binding Provider,Converter={StaticResource MainVerter},ConverterParameter=Some}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid IsReadOnly="True" HeadersVisibility="Column" AutoGenerateColumns="False" SelectionMode="Extended" SelectionUnit="Cell" FontSize="{Binding AppFontSize}">
+            <DataGrid.ItemsSource>
+                <MultiBinding Converter="{StaticResource MainMultiVerter}" ConverterParameter="ReportSource">
+                    <Binding Path="ReportView"/>
+                    <Binding Path="ReportMessageFilter"/>
+                </MultiBinding>
+            </DataGrid.ItemsSource>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Level,Converter={StaticResource MainVerter},ConverterParameter=ReportIcon}" Style="{StaticResource MenuIconStyle}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Level" Binding="{Binding Level}" Visibility="Collapsed"/>
+                <DataGridTextColumn Header="Customer Id" Binding="{Binding CustomerId}" MinWidth="90" ElementStyle="{StaticResource GridColCentreStyle}"/>
+                <DataGridTextColumn Header="Job Id" Binding="{Binding JobId}" MinWidth="90" ElementStyle="{StaticResource GridColCentreStyle}"/>
+                <DataGridTextColumn Header="User Id" Binding="{Binding UserId}" MinWidth="90" ElementStyle="{StaticResource GridColCentreStyle}"/>
+                <DataGridTextColumn Header="Message" Binding="{Binding Message}" Width="*"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Reload _Report" Command="{Binding RunReportCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="/Resources/reload16.png" Style="{StaticResource MenuIconStyle}"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <Border Grid.Row="1" BorderBrush="gray" BorderThickness="1" Padding="4">
+            <StackPanel Orientation="Horizontal">
+                <kit:WatermarkTextBox Width="120" Watermark="Message Filter" Padding="2,2,2,3" VerticalAlignment="Center" Text="{Binding ReportMessageFilter,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Delay=400}" MouseDoubleClick="MessageFilter_DoubleClick"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</main:AppBaseControl>

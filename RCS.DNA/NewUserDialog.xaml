@@ -1,0 +1,61 @@
+﻿<main:AppBaseWindow x:Class="RCS.DNA.NewUserDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:main="clr-namespace:RCS.DNA"
+        xmlns:model="clr-namespace:RCS.DNA.Model"
+        mc:Ignorable="d"
+        x:ClassModifier="internal"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Style="{StaticResource DialogStyle}"
+        ResizeMode="NoResize"
+        Title="{x:Static main:Strings.AppTitle}" Width="410">
+
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border Style="{StaticResource DialogHeadBorderStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Resources/User32.png" Style="{StaticResource DialogHeadImageStyle}"/>
+                    <TextBlock Text="New User" Style="{StaticResource DialogHeadTextStyle}"/>
+                </StackPanel>
+            </Border>
+            <Grid Grid.Row="1" Margin="20,10,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource DialogInstructStyle}" Text="A new user must initially be connected to a single customer. Connections to other customers or jobs, and other user details can be edited after the user is created."/>
+                <TextBlock Grid.Row="1" Text="User Name" Margin="0,12,0,0" Style="{StaticResource DialogLabelStyle}"/>
+                <TextBox Grid.Row="2" x:Name="TextName" Margin="0,4,0,0" MaxLength="64" Padding="2,2,2,3" Text="{Binding NewUserName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="3" Text="Password" Margin="0,12,0,0" Style="{StaticResource DialogLabelStyle}"/>
+                <TextBox Grid.Row="4" Margin="0,4,0,0" Width="200" HorizontalAlignment="Left" MaxLength="64" Padding="2,2,2,3" Text="{Binding NewUserPassword,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="5" Text="{x:Static main:Strings.LabelAppCustomer}" Margin="0,12,0,0" Style="{StaticResource DialogLabelStyle}"/>
+                <ComboBox Grid.Row="6" Width="200" HorizontalAlignment="Left" x:Name="DropCustomer" Margin="0,4,0,0" ItemsSource="{Binding ObsCustomerPick}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding NewUserCustomerId,Mode=TwoWay}"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="7" HorizontalAlignment="Center" Margin="0,22,0,0">
+                    <Button Content="Create" Width="90" Height="32" Margin="0,0,4,0" Click="CreateUser_Click" IsDefault="True" Command="main:MainCommands.CreateUser" CommandTarget="{Binding Owner,RelativeSource={RelativeSource AncestorType={x:Type Window},AncestorLevel=1}}"/>
+                    <Button Content="{x:Static main:Strings.ButtonCancelLabel}" Width="90" Height="32" Margin="4,0,0,0" IsCancel="True"/>
+                </StackPanel>
+            </Grid>
+            <Border Grid.Row="2" Style="{StaticResource DialogFootBorderStyle}">
+                <TextBlock Style="{StaticResource DialogFootTextStyle}" Text="{Binding NewUserErrors,Converter={StaticResource MainVerter},ConverterParameter=NewRecordErrorJoin|User}" Foreground="{Binding NewUserErrors,Converter={StaticResource MainVerter},ConverterParameter=NewRecordErrorFore}"/>
+            </Border>
+        </Grid>
+    </Border>
+</main:AppBaseWindow>

@@ -1,0 +1,222 @@
+﻿<Application x:Class="RCS.DNA.App"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:main="clr-namespace:RCS.DNA"
+        xmlns:kit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        StartupUri="MainWindow.xaml">
+
+    <Application.Resources>
+
+        <main:MainConverter x:Key="MainVerter"/>
+        <main:MainMultiConverter x:Key="MainMultiVerter"/>
+
+        <Style x:Key="NodeIconStyle" TargetType="Image">
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
+            <Setter Property="Margin" Value="0,0,4,0"/>
+        </Style>
+
+        <Style x:Key="MenuIconStyle" TargetType="Image">
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="LockHead" TargetType="DataGridColumnHeader">
+            <Setter Property="Foreground" Value="SteelBlue"/>
+        </Style>
+
+        <Style x:Key="GridCellStyle" TargetType="DataGridCell">
+            <Setter Property="Padding" Value="2,0,2,1"/>
+        </Style>
+
+        <Style x:Key="CountStyle" TargetType="TextBlock">
+            <Setter Property="Padding" Value="4,0,4,1"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style x:Key="DialogStyle" TargetType="main:AppBaseWindow">
+            <Setter Property="Background" Value="#f8f8f8"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <Style x:Key="DialogHeadBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="AliceBlue"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="SteelBlue"/>
+        </Style>
+        <Style x:Key="DialogHeadImageStyle" TargetType="Image">
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+        </Style>
+        <Style x:Key="DialogLabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="DarkSlateGray"/>
+        </Style>
+        <Style x:Key="DialogHeadTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="SteelBlue"/>
+        </Style>
+        <Style x:Key="DialogInstructStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="SteelBlue"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+        </Style>
+        <Style x:Key="DialogFootBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="Gainsboro"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="Margin" Value="0,20,0,0"/>
+            <Setter Property="BorderThickness" Value="0,1,0,0"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+        </Style>
+        <Style x:Key="DialogFootTextStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="ConnectNoteStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="SlateGray"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0,0,0,6"/>
+        </Style>
+
+        <Style x:Key="GridColStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="2,0,2,1"/>
+        </Style>
+        <Style x:Key="GridColCentreStyle" TargetType="TextBlock" BasedOn="{StaticResource GridColStyle}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="GridColRightStyle" TargetType="TextBlock" BasedOn="{StaticResource GridColStyle}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+
+        <Style x:Key="ViewControlStyle" TargetType="UserControl">
+            <Setter Property="Background" Value="WhiteSmoke"/>
+        </Style>
+
+        <Style x:Key="EditControlStyle" TargetType="UserControl">
+        </Style>
+
+        <Style x:Key="EditBorder" TargetType="Border">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="SteelBlue"/>
+            <Setter Property="Background" Value="GhostWhite"/>
+        </Style>
+
+        <Style x:Key="EditTitleBorder" TargetType="Border">
+            <Setter Property="Background" Value="SteelBlue"/>
+            <Setter Property="Padding" Value="6,3,4,4"/>
+        </Style>
+
+        <Style x:Key="EditTitleIcon" TargetType="Image">
+            <Setter Property="Width" Value="32"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="EditTitleLabel" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="EditTitleButton" TargetType="Button">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="34"/>
+            <Setter Property="Margin" Value="4,0,0,0"/>
+        </Style>
+
+        <Style x:Key="EditTitleButtonIcon" TargetType="Image">
+            <Setter Property="Width" Value="16"/>
+            <Setter Property="Height" Value="16"/>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.5"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="EditLabel" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="DarkSlateGray"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="0,4,8,4"/>
+        </Style>
+        <Style x:Key="EditBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="2,2,2,3"/>
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="EditBoxR" TargetType="TextBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="2,2,2,3"/>
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Gainsboro"/>
+        </Style>
+        <Style x:Key="EditDrop" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="EditSpin" TargetType="kit:IntegerUpDown">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="EditDate" TargetType="DatePicker">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="EditCheck" TargetType="CheckBox">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="ChildGridStyle" TargetType="DataGrid">
+            <Setter Property="FontSize" Value="{Binding AppFontSize}"/>
+            <Setter Property="MinHeight" Value="100"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="CanUserDeleteRows" Value="False"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="AllowDrop" Value="True"/>
+        </Style>
+
+        <Style x:Key="FilterBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="PowderBlue"/>
+            <Setter Property="Padding" Value="5,3"/>
+            <Setter Property="CornerRadius" Value="4"/>
+        </Style>
+        <Style x:Key="FilterLabelStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="0,0,6,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="FilterTextStyle" TargetType="TextBox">
+            <Setter Property="Padding" Value="2,0,2,2"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+    </Application.Resources>
+</Application>

@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Data Navigation Azure</value>
+  </data>
+  <data name="ComparingBusy" xml:space="preserve">
+    <value>Comparing licensing and cloud storage</value>
+  </data>
+  <data name="ContainerAndJobOK" xml:space="preserve">
+    <value>The container and licensing job record both exist.</value>
+  </data>
+  <data name="ContainerOrphan" xml:space="preserve">
+    <value>The container is an orphan. There is no licensing job record associated with the container.</value>
+  </data>
+  <data name="CustomerConnectUser1" xml:space="preserve">
+    <value>Connect customer {0} to child user {1}</value>
+  </data>
+  <data name="CustomerConnectUserN" xml:space="preserve">
+    <value>Connect customer {0} to {1} child users</value>
+  </data>
+  <data name="CustomerDisconnectUser" xml:space="preserve">
+    <value>Disconnect customer {0} from child user {1}</value>
+  </data>
+  <data name="DeleteCustomerBusy" xml:space="preserve">
+    <value>Deleting customer {0}</value>
+  </data>
+  <data name="DeleteCustomerPrompt" xml:space="preserve">
+    <value>Do you want to delete customer Id {0} Name '{1}'.
+
+Note: Deleting a customer removes it and its jobs from the licensing database, but it does NOT delete any existing Azure Storage Account or Containers that correspond to the customer and jobs.</value>
+  </data>
+  <data name="InaccessibleJobContainerPrompt" xml:space="preserve">
+    <value>Container '{0}' is inaccessible. Do you want to continue and convert the container to a job?</value>
+  </data>
+  <data name="JobOrphan" xml:space="preserve">
+    <value>The job is an orphan. There is no container associated with the licensing job record.</value>
+  </data>
+  <data name="ListJobsBusy" xml:space="preserve">
+    <value>Listing container blobs</value>
+  </data>
+  <data name="LoadCustomerListBusy" xml:space="preserve">
+    <value>Load customer list</value>
+  </data>
+  <data name="LoadingProviderBusy" xml:space="preserve">
+    <value>Loading Licensing Provider…</value>
+  </data>
+  <data name="LoadingProviderWait" xml:space="preserve">
+    <value>Please wait. Some providers may take a while to load or respond after a timeout due to an error.</value>
+  </data>
+  <data name="NewCustomerBadConnect" xml:space="preserve">
+    <value>Bad connections string</value>
+  </data>
+  <data name="NewCustomerBusy" xml:space="preserve">
+    <value>Creating new customer {0}</value>
+  </data>
+  <data name="NewCustomerDialogTitle" xml:space="preserve">
+    <value>New Customer</value>
+  </data>
+  <data name="NewCustomerInstructions" xml:space="preserve">
+    <value>Creating a new licensing customer also creates an Azure Storage Account which is associated with the customer.</value>
+  </data>
+  <data name="NoAsmLocation" xml:space="preserve">
+    <value>The location of the assembly {0} is unavailable</value>
+  </data>
+  <data name="NoProviderTypes" xml:space="preserve">
+    <value>No .NET class types acting as licensing providers were found in any assemblies in {0}</value>
+  </data>
+  <data name="NoSelectId" xml:space="preserve">
+    <value>SELECT</value>
+  </data>
+  <data name="NoSelectText" xml:space="preserve">
+    <value>--- SELECT ---</value>
+  </data>
+  <data name="NotJobContainerPrompt" xml:space="preserve">
+    <value>Container '{0}' does not contain both a job.ini file and a CaseData sub-directory. It may not contain a valid Ruby Job. Do you want to continue and convert the container to a job?</value>
+  </data>
+  <data name="NotJobDirectoryPrompt" xml:space="preserve">
+    <value>Directory '{0}' does not contain both a job.ini file and a CaseData sub-directory. It may not contain a valid Ruby Job. Do you want to continue and select the directory?</value>
+  </data>
+  <data name="SkipConstructor" xml:space="preserve">
+    <value>Constructor count for type {0} is {1}, expected 1 - Skipped.</value>
+  </data>
+  <data name="StorageAndCustomerOK" xml:space="preserve">
+    <value>The Storage Account and licensing customer record both exist.</value>
+  </data>
+  <data name="StorageInaccessible" xml:space="preserve">
+    <value>The Storage Account associated with the customer is inaccessible. Check that the connection string is specified and valid.</value>
+  </data>
+  <data name="TypeCreateFail" xml:space="preserve">
+    <value>Failed to create an instance of type '{0}' (parameter count {1}).</value>
+  </data>
+  <data name="UpdateCustomerBusy" xml:space="preserve">
+    <value>Updating customer</value>
+  </data>
+  <data name="UpdateJobBusy" xml:space="preserve">
+    <value>Updating job</value>
+  </data>
+  <data name="UpdateRealmBusy" xml:space="preserve">
+    <value>Updating realm</value>
+  </data>
+  <data name="UpdateUserBusy" xml:space="preserve">
+    <value>Updating user</value>
+  </data>
+  <data name="ValidateCustomerBusy" xml:space="preserve">
+    <value>Validating customer {0}</value>
+  </data>
+  <data name="ValidateCustomerFail" xml:space="preserve">
+    <value>Validation Failed
+
+Customer Id {0} Name {1} returned the following errors attempting to access the corresponding Azure Storage Account:
+
+{2}</value>
+  </data>
+  <data name="ValidateCustomerPass" xml:space="preserve">
+    <value>Validation Passed
+
+Customer Id {0} Name {1} has a corresponding Azure Storage Account and it is accessible.</value>
+  </data>
+  <data name="MetricsMaxLogItemsDesc" xml:space="preserve">
+    <value>The maximum number of items that will appear in log lists. Older excess items are dropped. Valid range is 50 to 2000.</value>
+  </data>
+  <data name="MetricsMaxListBlobsDesc" xml:space="preserve">
+    <value>The maximum number of Azure blobs that will be listed. Valid range is 500 to 20000.</value>
+  </data>
+  <data name="MetricsSaveDelaySecondsDesc" xml:space="preserve">
+    <value>The number of seconds to delay before saving a modified customer, job or user. Valid range is 0.5 to 5.0.</value>
+  </data>
+  <data name="MetricsUploadDirNamesDesc" xml:space="preserve">
+    <value>Comma or space separated names of directories to pre-select for upload (case insensitive).</value>
+  </data>
+  <data name="MetricsLicensingUriDesc" xml:space="preserve">
+    <value>The Uri of the base address of the Red Centre Software licensing web service. Only used for DNA Licence authentication.</value>
+  </data>
+  <data name="MetricsAutoConnectDesc" xml:space="preserve">
+    <value>Automatically connect on application start if previous successful credentials have been remembered. Press the Shift key on program start to prevent auto connect.</value>
+  </data>
+  <data name="MetricsMaxLogItemsDisplay" xml:space="preserve">
+    <value>Max Log Items</value>
+  </data>
+  <data name="MetricsMaxListBlobsDisplay" xml:space="preserve">
+    <value>Max List Blobs</value>
+  </data>
+  <data name="MetricsSaveDelaySecondsDisplay" xml:space="preserve">
+    <value>Save Delay Seconds</value>
+  </data>
+  <data name="MetricsUploadDirNamesDisplay" xml:space="preserve">
+    <value>Select Folders</value>
+  </data>
+  <data name="MetricsLicensingUriDisplay" xml:space="preserve">
+    <value>Licensing Uri</value>
+  </data>
+  <data name="MetricsAutoConnectDisplay" xml:space="preserve">
+    <value>Auto Connect</value>
+  </data>
+  <data name="MetricsAutoProviderDisplay" xml:space="preserve">
+    <value>Auto Provider</value>
+  </data>
+  <data name="MetricsApplicationCategory" xml:space="preserve">
+    <value>Application</value>
+  </data>
+  <data name="BindCustNoName" xml:space="preserve">
+    <value>Missing customer name</value>
+  </data>
+  <data name="BindCustBadName" xml:space="preserve">
+    <value>Bad cloud customer name</value>
+  </data>
+  <data name="BindCustBadConnect" xml:space="preserve">
+    <value>Bad storage connection string</value>
+  </data>
+  <data name="BindJobNoName" xml:space="preserve">
+    <value>Missing job name</value>
+  </data>
+  <data name="BinJobBadName" xml:space="preserve">
+    <value>Bad cloud job name</value>
+  </data>
+  <data name="BindRealmBadName" xml:space="preserve">
+    <value>Bad realm name</value>
+  </data>
+  <data name="BindUserBadName" xml:space="preserve">
+    <value>Bad user name</value>
+  </data>
+  <data name="CloudNodeOrphanContainer" xml:space="preserve">
+    <value> (orphan container)</value>
+  </data>
+  <data name="CloudNodeOrphanJob" xml:space="preserve">
+    <value> (orphan job)</value>
+  </data>
+  <data name="CloudJobNoContainer" xml:space="preserve">
+    <value>The job's Container does not exist or is inaccessible.</value>
+  </data>
+  <data name="NewCustNoConnect" xml:space="preserve">
+    <value>Enter connection string</value>
+  </data>
+  <data name="NewCustBadConnect" xml:space="preserve">
+    <value>Bad connection string</value>
+  </data>
+  <data name="NewCustBadName" xml:space="preserve">
+    <value>Invalid customer name</value>
+  </data>
+  <data name="NewJobNoCustomer" xml:space="preserve">
+    <value>Select customer</value>
+  </data>
+  <data name="NewJobNoName" xml:space="preserve">
+    <value>Enter job name</value>
+  </data>
+  <data name="NewJobBadName" xml:space="preserve">
+    <value>Bad job name</value>
+  </data>
+  <data name="NewJobDuplicateName" xml:space="preserve">
+    <value>Duplicate job name</value>
+  </data>
+  <data name="BusyConnectJobUser" xml:space="preserve">
+    <value>Connect Job and User</value>
+  </data>
+  <data name="BusyDisconnectJobUser" xml:space="preserve">
+    <value>Disconnect Job and User</value>
+  </data>
+  <data name="BusyLoadJobList" xml:space="preserve">
+    <value>Load job list</value>
+  </data>
+  <data name="BusyJobDownload" xml:space="preserve">
+    <value>Job Download</value>
+  </data>
+  <data name="BusyJobUpload" xml:space="preserve">
+    <value>Job Upload</value>
+  </data>
+  <data name="ConnectLackValues" xml:space="preserve">
+    <value>Insufficient connection values.</value>
+  </data>
+  <data name="DNANoAuth" xml:space="preserve">
+    <value>Not authorised to use this application.</value>
+  </data>
+  <data name="ConnectSuccess" xml:space="preserve">
+    <value>Connect successful. Closing Window... Please wait.</value>
+  </data>
+  <data name="ConnectWaiting" xml:space="preserve">
+    <value>Waiting for connect</value>
+  </data>
+  <data name="BusyLoadNavTree" xml:space="preserve">
+    <value>Loading navigation tree</value>
+  </data>
+  <data name="NavNodeRealms" xml:space="preserve">
+    <value>Realms</value>
+  </data>
+  <data name="NavNodeUsers" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="NavNodeCustomers" xml:space="preserve">
+    <value>Customers</value>
+  </data>
+  <data name="NavNodeJobs" xml:space="preserve">
+    <value>Jobs</value>
+  </data>
+  <data name="NewRealmNoname" xml:space="preserve">
+    <value>Enter Realm name</value>
+  </data>
+  <data name="NewRealmBadName" xml:space="preserve">
+    <value>Bad Realm name</value>
+  </data>
+  <data name="NewRealmDuplicateName" xml:space="preserve">
+    <value>Duplicate Realm name</value>
+  </data>
+  <data name="BusyLoadRealmList" xml:space="preserve">
+    <value>Load realm list</value>
+  </data>
+  <data name="BusyDatabaseReport" xml:space="preserve">
+    <value>Generating Database Report</value>
+  </data>
+  <data name="BusyConnectUserCust" xml:space="preserve">
+    <value>Connect User and Customer</value>
+  </data>
+  <data name="BusyDisconnectUserCust" xml:space="preserve">
+    <value>Disconnect User and Customer</value>
+  </data>
+  <data name="BusyConnectUserJob" xml:space="preserve">
+    <value>Connect User and Job</value>
+  </data>
+  <data name="BusyDisconnectUserJob" xml:space="preserve">
+    <value>Disconnect User and Job</value>
+  </data>
+  <data name="BusyUserList" xml:space="preserve">
+    <value>Load user list</value>
+  </data>
+  <data name="UserImportNoUsers" xml:space="preserve">
+    <value>The import worksheet does not define any users</value>
+  </data>
+  <data name="UserImportAllDuplicates" xml:space="preserve">
+    <value>Import rejected. All of the user names already exist in the licensing database.</value>
+  </data>
+  <data name="CustEditNewTip" xml:space="preserve">
+    <value>Display an input prompt to create a new customer.</value>
+  </data>
+  <data name="CustEditDeleteTip" xml:space="preserve">
+    <value>Delete the currently selected customer.</value>
+  </data>
+  <data name="CustEditValidateTip" xml:space="preserve">
+    <value>Validate the currently selected customer has an accessible Azure Storage Account</value>
+  </data>
+  <data name="LabelAppId" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="LabelAppCreated" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="LabelAppName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="LabelAppDisplayName" xml:space="preserve">
+    <value>Display Name</value>
+  </data>
+  <data name="LabelAppPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="LabelAppOtherProperties" xml:space="preserve">
+    <value>Other Properties</value>
+  </data>
+  <data name="LabelAppDataLocation" xml:space="preserve">
+    <value>Data Location</value>
+  </data>
+  <data name="LabelAppSequence" xml:space="preserve">
+    <value>Sequence</value>
+  </data>
+  <data name="LabelAppCredits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="LabelAppJobName" xml:space="preserve">
+    <value>Job Name</value>
+  </data>
+  <data name="LabelAppCustomer" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="LabelAppStorageConnect" xml:space="preserve">
+    <value>Storage Connect</value>
+  </data>
+  <data name="BusyValidateJob" xml:space="preserve">
+    <value>Validating job {0}</value>
+  </data>
+  <data name="NewJobLimit" xml:space="preserve">
+    <value>Account {0} has reached the limit of {1} jobs. Contact Red Centre Software to enable a larger job quota.</value>
+  </data>
+  <data name="LabelAppInactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="DNABadCredentials" xml:space="preserve">
+    <value>Incorrect DNA Account Id or Password credentials.</value>
+  </data>
+  <data name="ConnectNavLoading" xml:space="preserve">
+    <value>Loading navigation tree... Please wait.</value>
+  </data>
+  <data name="MetricsUploadExtensionsDesc" xml:space="preserve">
+    <value>Comma or space separated dot-prefixed file extensions to pre-select for upload (case insensitive).</value>
+  </data>
+  <data name="MetricsUploadCategory" xml:space="preserve">
+    <value>Job Upload</value>
+  </data>
+  <data name="MetricsUploadExtensionsDisplay" xml:space="preserve">
+    <value>Select Extensions</value>
+  </data>
+  <data name="ChangePasswordInstructions" xml:space="preserve">
+    <value>If user {0} has forgotten their password, a temporary password can be assigned here. The user can use the temporary password to login and change the password to a secret value of their choice.</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="ButtonOKLabel" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ButtonCancelLabel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ButtonCloseLabel" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="MetricsUserVisibilityCategory" xml:space="preserve">
+    <value>User Visibility</value>
+  </data>
+  <data name="MetricsShowUserCustNamesDisplay" xml:space="preserve">
+    <value>Cloud Customers</value>
+  </data>
+  <data name="MetricsShowUserCustNamesDesc" xml:space="preserve">
+    <value>Specifies if the User → Customer Names field is visible.</value>
+  </data>
+  <data name="MetricsShowUserJobNamesDisplay" xml:space="preserve">
+    <value>Cloud Jobs</value>
+  </data>
+  <data name="MetricsShowUserJobNamesDesc" xml:space="preserve">
+    <value>Specifies if the User → Job Names field is visible.</value>
+  </data>
+  <data name="MetricsShowUserVartreeNamesDisplay" xml:space="preserve">
+    <value>Vartree Names</value>
+  </data>
+  <data name="MetricsShowUserVartreeNamesDesc" xml:space="preserve">
+    <value>Specifies if the User → Vartree Names field is visible.</value>
+  </data>
+  <data name="MetricsShowUserDashboardNamesDisplay" xml:space="preserve">
+    <value>Dashboard Names</value>
+  </data>
+  <data name="MetricsShowUserDashboardNamesDesc" xml:space="preserve">
+    <value>Specifies if the User → Dashboard Names field is visible.</value>
+  </data>
+  <data name="MetricsShowUserDataLocationDisplay" xml:space="preserve">
+    <value>Data Location</value>
+  </data>
+  <data name="MetricsShowUserDataLocationDesc" xml:space="preserve">
+    <value>Specifies if the User → Data Location field is visible.</value>
+  </data>
+  <data name="MetricsShowUserUidDisplay" xml:space="preserve">
+    <value>Uid</value>
+  </data>
+  <data name="MetricsShowUserUidDesc" xml:space="preserve">
+    <value>Specifies if the User → Uid field is visible.</value>
+  </data>
+  <data name="MetricsCustVisibilityCategory" xml:space="preserve">
+    <value>Customer Visibility</value>
+  </data>
+  <data name="MetricsShowCustInfoDisplay" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="MetricsShowCustInfoDesc" xml:space="preserve">
+    <value>Specifies if the Customer → Info field is visible.</value>
+  </data>
+  <data name="MetricsShowCustLogoDisplay" xml:space="preserve">
+    <value>Logo</value>
+  </data>
+  <data name="MetricsShowCustLogoDesc" xml:space="preserve">
+    <value>Specifies if the Customer → Logo field is visible.</value>
+  </data>
+  <data name="MetricsShowCustSigninLogoDisplay" xml:space="preserve">
+    <value>Signin Logo</value>
+  </data>
+  <data name="MetricsShowCustSigninLogoDesc" xml:space="preserve">
+    <value>Specifies if the Customer → Signin Logo field is visible.</value>
+  </data>
+  <data name="MetricsShowCustSigninNoteDisplay" xml:space="preserve">
+    <value>Signin Note</value>
+  </data>
+  <data name="MetricsShowCustSigninNoteDesc" xml:space="preserve">
+    <value>Specifies if the Customer → Signin Note field is visible.</value>
+  </data>
+  <data name="MetricsShowCustCloudNamesDisplay" xml:space="preserve">
+    <value>Cloud Names</value>
+  </data>
+  <data name="MetricsShowCustCloudNamesDesc" xml:space="preserve">
+    <value>Specifies if the Customer → Cloud Names field is visible.</value>
+  </data>
+  <data name="MetricsShowCustCorporationDisplay" xml:space="preserve">
+    <value>Corporation</value>
+  </data>
+  <data name="MetricsShowCustCorporationDesc" xml:space="preserve">
+    <value>Specifies if the Customer → Corporation field is visible.</value>
+  </data>
+  <data name="MetricsShowUserEmailDisplay" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="MetricsShowUserEmailDesc" xml:space="preserve">
+    <value>Specifies if the User → Email field is visible.</value>
+  </data>
+  <data name="UserNotEmail" xml:space="preserve">
+    <value>The User Name is not a valid email address.</value>
+  </data>
+  <data name="EmailRedundant" xml:space="preserve">
+    <value>The User email address is redundant because it is the same as the User name.</value>
+  </data>
+  <data name="NewJobInstructions" xml:space="preserve">
+    <value>A new job must be initially connected to a parent customer. The customer can't be changed after the job is created.</value>
+  </data>
+</root>

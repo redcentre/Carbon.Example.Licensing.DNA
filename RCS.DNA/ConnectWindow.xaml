@@ -1,0 +1,112 @@
+<main:AppBaseWindow x:Class="RCS.DNA.ConnectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:main="clr-namespace:RCS.DNA"
+        xmlns:model="clr-namespace:RCS.DNA.Model"
+        xmlns:kit="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        x:ClassModifier="internal"
+        FontSize="14"
+        Title="DNA Connect"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Height="740" Width="820"
+        MinHeight="500" MinWidth="700">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="280" MinWidth="180"/>
+                <ColumnDefinition Width="4"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border Background="SlateGray" Padding="4">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Connect Profiles" Foreground="White"/>
+                        <Button Grid.Column="1" Margin="0,0,4,0" ToolTip="Add a new profile" Command="{Binding AddProfileCommand}">
+                            <Button.Content>
+                                <Image Source="Resources/NewProfile16.png" Style="{StaticResource MenuIconStyle}"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="2" ToolTip="Delete the selected profile" Command="main:MainCommands.DeleteProfile" CommandTarget="{Binding Owner,RelativeSource={RelativeSource AncestorType={x:Type Window},AncestorLevel=1}}">
+                            <Button.Content>
+                                <Image Source="Resources/DeleteProfile16.png" Style="{StaticResource MenuIconStyle}"/>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                </Border>
+                <ListBox Grid.Row="1" ItemsSource="{Binding ObsProfiles}" SelectedItem="{Binding SelectedProfile,Mode=TwoWay}" IsEnabled="{Binding IsConnecting,Converter={StaticResource MainVerter},ConverterParameter=Not}" MouseDoubleClick="ProfileList_DoubleClick">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,3">
+                                    <Image Source="Resources/NewProfile16.png" Style="{StaticResource MenuIconStyle}" Margin="0,0,4,0"/>
+                                    <TextBlock Text="{Binding Name}" FontSize="16"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding CreatedUtc,Converter={StaticResource MainVerter},ConverterParameter='LabelDate|Created : '}" Opacity="0.6" FontSize="12" Margin="0,0,0,2"/>
+                                <TextBlock Text="{Binding LastUpdateUtc,Converter={StaticResource MainVerter},ConverterParameter='LabelDate|Updated : '}" Opacity="0.6" FontSize="12" Margin="0,0,0,2"/>
+                                <TextBlock Text="{Binding LastConnectUtc,Converter={StaticResource MainVerter},ConverterParameter='LabelDate|Connect : '}" Opacity="0.6" FontSize="12" Margin="0,0,0,3"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            <kit:PropertyGrid Grid.Column="2" ShowSearchBox="False" ShowSortOptions="False" ShowTitle="False" SelectedObject="{Binding SelectedProfile}" IsEnabled="{Binding IsConnecting,Converter={StaticResource MainVerter},ConverterParameter=Not}"/>
+        </Grid>
+        <Border Grid.Row="1" Padding="8,4" Background="WhiteSmoke" MinHeight="54">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock TextWrapping="Wrap" Foreground="{Binding IsConnectError,Converter={StaticResource MainVerter},ConverterParameter=ConnectMessageFore}" VerticalAlignment="Center">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource MainMultiVerter}" ConverterParameter="ConnectMessage">
+                            <Binding Path="IsConnecting"/>
+                            <Binding Path="IsConnectError"/>
+                            <Binding Path="SelectedProfile.CanConnect"/>
+                            <Binding Path="ConnectMessage"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <Image Grid.Column="1" Source="Resources/BusySpin.png" Width="42" Margin="10,0,6,0" RenderTransformOrigin="0.5,0.5" Visibility="{Binding IsConnecting,Converter={StaticResource MainVerter},ConverterParameter=TrueVisibleHide}">
+                    <Image.RenderTransform>
+                        <RotateTransform x:Name="SpinTransform" Angle="0"/>
+                    </Image.RenderTransform>
+                    <Image.Triggers>
+                        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SpinTransform" Storyboard.TargetProperty="(RotateTransform.Angle)" From="0.0" To="360" BeginTime="0:0:0" Duration="0:0:1" RepeatBehavior="Forever" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Image.Triggers>
+                </Image>
+                <Button Grid.Column="2" Width="90" Height="32" Content="Connect" Margin="8,0,8,0" Command="main:MainCommands.Connect" CommandTarget="{Binding Owner,RelativeSource={RelativeSource AncestorType={x:Type Window},AncestorLevel=1}}" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window},AncestorLevel=1}}"/>
+                <Button Grid.Column="3" Width="90" Height="32" Content="{x:Static main:Strings.ButtonCloseLabel}" IsCancel="True" IsEnabled="{Binding IsConnecting,Converter={StaticResource MainVerter},ConverterParameter=Not}"/>
+            </Grid>
+        </Border>
+    </Grid>
+</main:AppBaseWindow>

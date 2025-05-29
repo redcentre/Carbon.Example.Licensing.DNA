@@ -1,0 +1,104 @@
+﻿<main:AppBaseWindow x:Class="RCS.DNA.NewCustomerDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:main="clr-namespace:RCS.DNA"
+        xmlns:model="clr-namespace:RCS.DNA.Model"
+        mc:Ignorable="d"
+        x:ClassModifier="internal"
+        Title="{x:Static main:Strings.AppTitle}"
+        Style="{StaticResource DialogStyle}"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        SizeToContent="Height"
+        Width="400">
+
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border Style="{StaticResource DialogHeadBorderStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Resources/Customer32.png" Style="{StaticResource DialogHeadImageStyle}"/>
+                    <TextBlock Text="New Customer" Style="{StaticResource DialogHeadTextStyle}"/>
+                </StackPanel>
+            </Border>
+            <Grid Grid.Row="1" Margin="20,10,20,0" IsEnabled="{Binding NewCustomerBusyMessage,Converter={StaticResource MainVerter},ConverterParameter=None}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource DialogInstructStyle}" Text="{x:Static main:Strings.NewCustomerInstructions}"/>
+                <TextBlock Grid.Row="1" Text="Customer Name" Margin="0,14,0,0" Style="{StaticResource DialogLabelStyle}"/>
+                <TextBox Grid.Row="2" x:Name="BoxCustName" Width="320" Padding="2,2,2,3" Margin="0,4,0,0" HorizontalAlignment="Left" MaxLength="633" Text="{Binding NewCustomerName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Grid.Row="3" Text="Resource Group" Margin="0,7,0,0" Style="{StaticResource DialogLabelStyle}"/>
+                <ComboBox Grid.Row="4" Width="220" HorizontalAlignment="Left" Margin="0,4,0,0" ItemsSource="{Binding NewCustomerResourceGroupNames}" SelectedItem="{Binding NewCustomerSelectedResourceGroupName,Mode=TwoWay}"/>
+                <TextBlock Grid.Row="5" Text="Location (Region)" Margin="0,8,0,0" Style="{StaticResource DialogLabelStyle}"/>
+                <ComboBox Grid.Row="6" Width="220" HorizontalAlignment="Left" Margin="0,4,0,0" ItemsSource="{Binding NewCustomerLocationPicks}" DisplayMemberPath="DisplayName" SelectedValue="{Binding NewCustomerSelectedLocationPick,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox Grid.Row="7" Content="Blobs are public" Margin="0,14,0,0" HorizontalAlignment="Left" IsChecked="{Binding NewCustomerIsBlobsPublic,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <GroupBox Header="Realm" Grid.Row="8" Padding="8" Margin="0,6,0,0" Visibility="{Binding Provider.SupportsRealms,Converter={StaticResource MainVerter},ConverterParameter=TrueVisible}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <RadioButton x:Name="RadExisting" Content="Existing" VerticalAlignment="Center"
+                                     IsChecked="{Binding SelectedNewCustRealmType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource MainVerter},ConverterParameter='EnumBool|Existing'}"/>
+                        <ComboBox Grid.Column="1" Width="200" Margin="10,0,0,0" VerticalAlignment="Center"
+                                  IsEnabled="{Binding ElementName=RadExisting,Path=IsChecked}"
+                                  ItemsSource="{Binding ObsRealmPick}"
+                                  SelectedItem="{Binding SelectedNewCustomerExistingRealm,Mode=TwoWay}"
+                                  DisplayMemberPath="Name"/>
+                        <RadioButton x:Name="RadNew" Content="New" Grid.Row="1" Margin="0,4,0,0" VerticalAlignment="Center"
+                                     IsChecked="{Binding SelectedNewCustRealmType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource MainVerter},ConverterParameter='EnumBool|New'}"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Width="200" Margin="10,8,0,0" Padding="2,2,2,3" MaxLength="32"
+                                 IsEnabled="{Binding ElementName=RadNew,Path=IsChecked}"
+                                 Text="{Binding NewCustomerNewRealmName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+                </GroupBox>
+                <StackPanel Orientation="Horizontal" Grid.Row="9" Margin="0,16,0,0" HorizontalAlignment="Center">
+                    <Button Content="Create" x:Name="BtnCreate" Margin="0,0,6,0" Width="90" Height="32" IsDefault="True" Command="main:MainCommands.CreateCustomer" CommandTarget="{Binding Owner,RelativeSource={RelativeSource AncestorType={x:Type Window},AncestorLevel=1}}"/>
+                    <Button Content="{x:Static main:Strings.ButtonCancelLabel}" Width="90" Height="32" Margin="6,0,0,0" IsCancel="True"/>
+                </StackPanel>
+            </Grid>
+            <Border Grid.Row="2" Style="{StaticResource DialogFootBorderStyle}">
+                <TextBlock Style="{StaticResource DialogFootTextStyle}" Foreground="{Binding NewCustomerErrorMessage,Converter={StaticResource MainVerter},ConverterParameter=NewCustomerFeedbackFore}">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource MainMultiVerter}" ConverterParameter="NewCustomerFeedback">
+                            <Binding Path="NewCustomerBusyMessage"/>
+                            <Binding Path="NewCustomerErrorMessage"/>
+                            <Binding Path="NewCustomerName"/>
+                            <Binding Path="NewCustomerSelectedResourceGroupName"/>
+                            <Binding Path="NewCustomerSelectedLocationPick"/>
+                            <Binding Path="SelectedNewCustRealmType"/>
+                            <Binding Path="SelectedNewCustomerExistingRealm"/>
+                            <Binding Path="NewCustomerNewRealmName"/>
+                            <Binding Path="ObsRealmPick"/>
+                            <Binding Path="Provider"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </Border>
+        </Grid>
+    </Border>
+</main:AppBaseWindow>

@@ -1,0 +1,8 @@
+.vs/
+bin/
+obj/
+Debug/
+Release/
+_support/
+*.user
+*.Generated.cs

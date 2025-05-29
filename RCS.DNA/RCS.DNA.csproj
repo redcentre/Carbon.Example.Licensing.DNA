@@ -1,0 +1,179 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <SelfContained>false</SelfContained>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyVersion>2.0.8</AssemblyVersion>
+    <Product>Data Navigation Azure</Product>
+    <Authors>Red Centre Software</Authors>
+    <Company>Red Centre Software</Company>
+    <Description>A general-purpose desktop application to manage licensing data for the Red Centre Software Carbon cross-tabulation library suite.</Description>
+    <Copyright>© 2023-2025 Red Centre Software</Copyright>
+    <IsPackable>false</IsPackable>
+    <NeutralResourcesLanguage>en-AU</NeutralResourcesLanguage>
+    <NeutralLanguage>en-AU</NeutralLanguage>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <WarningsAsErrors />
+    <UseWindowsForms>True</UseWindowsForms>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CS8602;CS8604</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;CS8602;CS8604</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>BuildTime</_Parameter1>
+      <_Parameter2>$([System.DateTime]::Now.ToString("yyyy-MM-dd HH:mm:ss K"))</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Windows.ThemeInfoAttribute">
+      <_Parameter1>System.Windows.ResourceDictionaryLocation.None</_Parameter1>
+      <_Parameter1_IsLiteral>true</_Parameter1_IsLiteral>
+      <_Parameter2>System.Windows.ResourceDictionaryLocation.SourceAssembly</_Parameter2>
+      <_Parameter2_IsLiteral>true</_Parameter2_IsLiteral>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="System" />
+    <Using Include="System.ComponentModel" />
+    <Using Include="System.Linq" />
+    <Using Include="System.Threading.Tasks" />
+    <Using Include="System.Windows" />
+    <Using Include="System.Windows.Input" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.24.0" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="5.0.124" />
+    <PackageReference Include="ExcelDataReader.DataSet" Version="3.7.0" />
+    <PackageReference Include="Orthogonal.Common.Basic" Version="3.2.4" />
+    <PackageReference Include="Orthogonal.NSettings" Version="3.0.5" />
+    <PackageReference Include="RCS.Azure.StorageAccount" Version="2.0.4" />
+    <PackageReference Include="RCS.Azure.StorageAccount.Shared" Version="2.0.4" />
+    <PackageReference Include="RCS.Carbon.Variables" Version="9.1.31" />
+    <PackageReference Include="RCS.Licensing.Example.Provider" Version="9.2.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.7" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+    <PackageReference Include="System.Text.Json" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="App.ico" />
+    <Resource Include="Resources\Copy16.png" />
+    <Resource Include="Resources\DNA-Logo-1.png" />
+    <Resource Include="Resources\EditEntity16.png" />
+    <Resource Include="Resources\EmailRedundant10.png" />
+    <Resource Include="Resources\InfoTip12.png" />
+    <Resource Include="Resources\NameNotEmail16.png" />
+    <Resource Include="Resources\NewProfile16.png" />
+    <Resource Include="Resources\AppAlert.png" />
+    <Resource Include="Resources\BlobListError32.png" />
+    <Resource Include="Resources\BusySpin.png" />
+    <Resource Include="Resources\Compare16.png" />
+    <Resource Include="Resources\Connect16.png" />
+    <Resource Include="Resources\Customer16.png" />
+    <Resource Include="Resources\Customer32.png" />
+    <Resource Include="Resources\CustomerX16.png" />
+    <Resource Include="Resources\CustomerX32.png" />
+    <Resource Include="Resources\Delete16.png" />
+    <Resource Include="Resources\DeleteProfile16.png" />
+    <Resource Include="Resources\DetectProviders16.png" />
+    <Resource Include="Resources\Disconnect16.png" />
+    <Resource Include="Resources\DownloadJob16.png" />
+    <Resource Include="Resources\DownloadJob32.png" />
+    <Resource Include="Resources\File16.png" />
+    <Resource Include="Resources\Help16.png" />
+    <Resource Include="Resources\ImportUsers16.png" />
+    <Resource Include="Resources\Key16.png" />
+    <Resource Include="Resources\Metrics16.png" />
+    <Resource Include="Resources\Metrics32.png" />
+    <Resource Include="Resources\Navigation16.png" />
+    <Resource Include="Resources\Navigation32.png" />
+    <Resource Include="Resources\FolderBrowse16.png" />
+    <Resource Include="Resources\FolderClosed16.png" />
+    <Resource Include="Resources\FolderOpen16.png" />
+    <Resource Include="Resources\Invalid16.png" />
+    <Resource Include="Resources\Job16.png" />
+    <Resource Include="Resources\Job32.png" />
+    <Resource Include="Resources\JobX16.png" />
+    <Resource Include="Resources\JobX32.png" />
+    <Resource Include="Resources\LoadList16.png" />
+    <Resource Include="Resources\NewCustomer16.png" />
+    <Resource Include="Resources\NewJob16.png" />
+    <Resource Include="Resources\NewRealm16.png" />
+    <Resource Include="Resources\NewUser16.png" />
+    <Resource Include="Resources\Property16.png" />
+    <Resource Include="Resources\Provider256.png" />
+    <Resource Include="Resources\ProviderDefault.ico" />
+    <Resource Include="Resources\Realm16.png" />
+    <Resource Include="Resources\Realm32.png" />
+    <Resource Include="Resources\RealmX16.png" />
+    <Resource Include="Resources\RealmX32.png" />
+    <Resource Include="Resources\Reload16.png" />
+    <Resource Include="Resources\Report16.png" />
+    <Resource Include="Resources\ReportLevel0.png" />
+    <Resource Include="Resources\ReportLevel1.png" />
+    <Resource Include="Resources\ReportLevel2.png" />
+    <Resource Include="Resources\Save16.png" />
+    <Resource Include="Resources\Unknown16.png" />
+    <Resource Include="Resources\Unknown32.png" />
+    <Resource Include="Resources\UploadJob16.png" />
+    <Resource Include="Resources\UploadJob32.png" />
+    <Resource Include="Resources\User16.png" />
+    <Resource Include="Resources\User32.png" />
+    <Resource Include="Resources\UserX16.png" />
+    <Resource Include="Resources\UserX32.png" />
+    <Resource Include="Resources\Validate16.png" />
+    <Resource Include="Resources\Vartree16.png" />
+    <Resource Include="Resources\Vartree32.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Model\AppMetrics.Generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppMetrics.Generated.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Strings.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Model\AppMetrics.Generated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AppMetrics.Generated.cs</LastGenOutput>
+    </None>
+    <EmbeddedResource Update="Strings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>
+
