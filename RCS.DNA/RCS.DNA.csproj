@@ -8,7 +8,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>App.ico</ApplicationIcon>
-    <AssemblyVersion>2.0.8</AssemblyVersion>
+    <Version>2.0.9</Version>
     <Product>Data Navigation Azure</Product>
     <Authors>Red Centre Software</Authors>
     <Company>Red Centre Software</Company>
@@ -65,8 +65,8 @@
     <PackageReference Include="Orthogonal.NSettings" Version="3.0.5" />
     <PackageReference Include="RCS.Azure.StorageAccount" Version="2.0.4" />
     <PackageReference Include="RCS.Azure.StorageAccount.Shared" Version="2.0.4" />
-    <PackageReference Include="RCS.Carbon.Variables" Version="9.1.31" />
-    <PackageReference Include="RCS.Licensing.Example.Provider" Version="9.2.0" />
+    <PackageReference Include="RCS.Carbon.Variables" Version="9.1.33" />
+    <PackageReference Include="RCS.Licensing.Example.Provider" Version="9.2.2" />
     <PackageReference Include="System.Drawing.Common" Version="8.0.7" />
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
     <PackageReference Include="System.Text.Json" Version="9.0.4" />
