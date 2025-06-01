@@ -76,7 +76,7 @@ partial class MainController
 			}
 			else
 			{
-				Provider = new ExampleLicensingProvider(SelectedProfile.SqlAdoConnect!);
+				Provider = new ExampleLicensingProvider(SelectedProfile.SqlAdoConnect!, SelectedProfile.SqlProductKey);
 			}
 			Provider.ProviderLog += (s, e) =>
 			{
