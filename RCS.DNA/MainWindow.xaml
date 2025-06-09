@@ -269,6 +269,12 @@
                                 </TabItem.Header>
                                 <main:ViewReportControl/>
                             </TabItem>
+                            <TabItem Style="{StaticResource TabItemStyle}">
+                                <TabItem.Header>
+                                    <TextBlock Text="Sessions"/>
+                                </TabItem.Header>
+                                <main:ViewSessionsControl/>
+                            </TabItem>
                         </TabControl>
                         <!-- User list filter only visible when it's selected -->
                         <Border HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,4,8,0" Style="{StaticResource FilterBorderStyle}" Visibility="{Binding SelectedNavNode,Converter={StaticResource MainVerter},ConverterParameter='NodeTypeVisible|UserRoot'}">

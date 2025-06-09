@@ -1,4 +1,4 @@
-﻿using WF = System.Windows.Forms;
+using WF = System.Windows.Forms;
 
 namespace RCS.DNA;
 

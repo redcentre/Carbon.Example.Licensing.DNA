@@ -141,6 +141,8 @@ partial class MainController
 				StorageKey = account.ConnectionString
 			};
 			// BUG Creating an RCS provider customer record fails because the parent AgencyId is required. This is not a problem in the Example provider.
+			// This could require a UI change so that a parent agency must be picked for the RCS provider but not the example one.
+			// Another provider property to control this would be needed in the provider interface.
 			var result = await Provider!.UpsertCustomer(cust);
 			var newcust = result.Entity;
 			if (Provider.SupportsRealms == true)

@@ -107,9 +107,11 @@ partial class MainController
 			Settings.Put(SelectedProfile.ProfileKey, nameof(AppProfile.LastConnectUtc), SelectedProfile.LastConnectUtc);
 			SelectedProfile!.ConnectCount++;
 			Settings.Put(SelectedProfile.ProfileKey, nameof(AppProfile.ConnectCount), SelectedProfile.ConnectCount);
+			CarbonServiceUriPicks = [.. SelectedProfile.CarbonServiceBaseUris.Prepend("---- SELECT ----")];
+			SelectedCarbonServiceUri = CarbonServiceUriPicks[0];
 			await Task.Delay(200);
 			ShowConnectMessage(false, Strings.ConnectSuccess);
-			await Task.Delay(1500);
+			await Task.Delay(1000);
 		}
 		catch (Exception ex)
 		{

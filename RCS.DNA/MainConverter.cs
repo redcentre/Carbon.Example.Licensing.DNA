@@ -87,10 +87,18 @@ internal partial class MainConverter : IValueConverter
 			var loc = (DataLocationType?)value;
 			return loc == null ? string.Empty : loc.ToString();
 		}
+		if (convarg == "IdleTime")
+		{
+			if (value == null) return null;
+			var time = (DateTime)value;
+			int secs = (int)DateTime.UtcNow.Subtract(time).TotalSeconds;
+			var span = TimeSpan.FromSeconds(secs);
+			return span.ToString("g");
+		}
 		if (convarg == "LocalTime6")
 		{
 			var time = (DateTime?)value;
-			return time?.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
+			return time?.ToString("yyyy-MM-dd HH:mm:ss");
 		}
 		if (convarg == "LocalTime4")
 		{

@@ -41,7 +41,7 @@ partial class MainController
 
 	Regex? repRegMessage;
 
-	string?_reportMessageFilter;
+	string? _reportMessageFilter;
 	public string? ReportMessageFilter
 	{
 		get => _reportMessageFilter;

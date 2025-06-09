@@ -1,0 +1,52 @@
+<main:AppBaseControl x:Class="RCS.DNA.ViewSessionsControl"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:main="clr-namespace:RCS.DNA"
+            xmlns:model="clr-namespace:RCS.DNA.Model"
+            xmlns:kit="http://schemas.xceed.com/wpf/xaml/toolkit"
+            mc:Ignorable="d"
+            x:ClassModifier="internal"
+            Style="{StaticResource ViewControlStyle}"
+            d:DesignHeight="450" d:DesignWidth="920">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Padding="6,4,6,5" Background="GhostWhite" BorderThickness="1,1,1,0" BorderBrush="{x:Static SystemColors.ActiveBorderBrush}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Carbon web service Uri" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                <ComboBox Width="300" VerticalAlignment="Center" ItemsSource="{Binding CarbonServiceUriPicks}" SelectedIndex="{Binding SelectedCarbonServiceIndex}" SelectedItem="{Binding SelectedCarbonServiceUri,Mode=TwoWay}"/>
+                <Button Command="{Binding LoadSessionsCommand}" Margin="8,0,0,0" Padding="3" VerticalAlignment="Center" ToolTip="Refresh the session list.">
+                    <Button.Content>
+                        <Image Source="Resources/Reload16.png" Style="{StaticResource MenuIconStyle}"/>
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding ForceSessionsCommand}" Margin="8,0,0,0" Padding="3" VerticalAlignment="Center" ToolTip="Forcbly end the selected sessions.">
+                    <Button.Content>
+                        <Image Source="Resources/Delete16.png" Style="{StaticResource MenuIconStyle}"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </Border>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding ObsSessions}" IsReadOnly="True" AutoGenerateColumns="False" IsEnabled="{Binding ObsSessions,Converter={StaticResource MainVerter},ConverterParameter=Some}" SelectedCellsChanged="Sessions_SelectedCellsChanged" FontSize="{Binding AppFontSize}" SelectionMode="Extended" SelectionUnit="Cell" HeadersVisibility="Column">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Session Id" Binding="{Binding SessionId}" ElementStyle="{StaticResource GridColCentreStyle}"/>
+                <DataGridTextColumn Header="User Id" Binding="{Binding UserId}"/>
+                <DataGridTextColumn Header="User Name" Binding="{Binding UserName}"/>
+                <DataGridTextColumn Header="Created" Binding="{Binding CreatedUtc,Converter={StaticResource MainVerter},ConverterParameter=LocalTime6}" ElementStyle="{StaticResource GridColCentreStyle}"/>
+                <DataGridTextColumn Header="Last Activity Time" Binding="{Binding LastActivityUtc,Converter={StaticResource MainVerter},ConverterParameter=LocalTime6}" ElementStyle="{StaticResource GridColCentreStyle}"/>
+                <DataGridTextColumn Header="Idle Time" Binding="{Binding LastActivityUtc,Converter={StaticResource MainVerter},ConverterParameter=IdleTime}" ElementStyle="{StaticResource GridColRightStyle}"/>
+                <DataGridTextColumn Header="Last Activity Call" Binding="{Binding LastActivity}"/>
+                <DataGridTextColumn Header="Activity Count" Binding="{Binding ActivityCount}" ElementStyle="{StaticResource GridColRightStyle}"/>
+                <DataGridTextColumn Header="Open Customer" Binding="{Binding OpenCustomerName}"/>
+                <DataGridTextColumn Header="Open Job" Binding="{Binding OpenJobName}"/>
+                <DataGridTextColumn Header="Open Vartree" Binding="{Binding OpenVartreeName}"/>
+                <DataGridTextColumn Header="Open Report" Binding="{Binding OpenReportName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</main:AppBaseControl>

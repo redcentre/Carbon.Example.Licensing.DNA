@@ -1,4 +1,4 @@
-﻿using System.Windows.Threading;
+using System.Windows.Threading;
 using RCS.DNA.Model;
 
 namespace RCS.DNA;
@@ -35,6 +35,8 @@ partial class MainWindow : Window
 		Controller.Startup();
 		await Task.Delay(250);
 		MainCommands.LaunchConnectPrompt.Execute(null, this);
+		Controller.ForceSessionsCallback = (sessions) => ForceSessionsHandler(sessions);
+		Controller.WarningCallback = (message) => Pop.Warning(this, message);
 	}
 
 	void MainWindow_Closing(object? sender, CancelEventArgs e)

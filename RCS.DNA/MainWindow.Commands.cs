@@ -1,5 +1,6 @@
 using Microsoft.Win32;
 using RCS.Azure.StorageAccount.Shared;
+using RCS.Carbon.Example.WebService.Common.DTO;
 using RCS.DNA.Model;
 using RCS.DNA.Model.Extensions;
 using RCS.Licensing.Provider.Shared;
@@ -699,5 +700,13 @@ partial class MainWindow
 			DataContext = DataContext
 		};
 		window.ShowDialog();
+	}
+
+	bool ForceSessionsHandler(SessionStatus[] sessions)
+	{
+		string message = sessions.Length == 1 ?
+			"Do you want to forcible end the selected session?" :
+			$"Do you want to forcibly end the {sessions.Length} selected sessions?";
+		return Pop.Question(this, message);
 	}
 }

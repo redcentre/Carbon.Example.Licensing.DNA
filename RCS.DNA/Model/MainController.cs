@@ -11,7 +11,6 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
 using Orthogonal.NSettings;
 using RCS.Azure.StorageAccount;
-using RCS.Azure.StorageAccount.Shared;
 using RCS.Licensing.Example.Provider;
 using RCS.Licensing.Provider;
 using RCS.Licensing.Provider.Shared;
@@ -27,6 +26,7 @@ sealed partial class MainController : ObservableObject
 
 	DispatcherTimer navtimer;
 	readonly DirectoryInfo appdir = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), App.Company));
+	public Action<string>? WarningCallback { get; set; }
 
 	#region Lifetime
 
@@ -157,6 +157,7 @@ sealed partial class MainController : ObservableObject
 			var prof = new AppProfile(profileKey)
 			{
 				Name = Settings.Get(profileKey, nameof(AppProfile.Name)),
+				UserNameIsEmail = Settings.GetBool(profileKey, nameof(AppProfile.UserNameIsEmail)) ?? false,
 				CreatedUtc = Settings.GetDateTime(profileKey, nameof(AppProfile.CreatedUtc), DateTime.UtcNow),
 				LastUpdateUtc = Settings.GetDateTime(profileKey, nameof(AppProfile.LastUpdateUtc)),
 				LastConnectUtc = Settings.GetDateTime(profileKey, nameof(AppProfile.LastConnectUtc)),
@@ -165,6 +166,8 @@ sealed partial class MainController : ObservableObject
 				Password = Settings.Get(profileKey, nameof(AppProfile.Password)),
 				CarbonLoginNameOrId = Settings.Get(profileKey, nameof(AppProfile.CarbonLoginNameOrId)),
 				CarbonLoginPassword = Settings.Get(profileKey, nameof(AppProfile.CarbonLoginPassword)),
+				CarbonLoginSequence = Settings.Get(profileKey, nameof(AppProfile.CarbonLoginSequence), AuthenticateSequence.NameThenId),
+				CarbonServiceApiKey = Settings.Get(profileKey, nameof(AppProfile.CarbonServiceApiKey)),
 				SqlProviderActive = Settings.GetBool(profileKey, nameof(AppProfile.SqlProviderActive)) ?? false,
 				SqlAdoConnect = Settings.Get(profileKey, nameof(AppProfile.SqlAdoConnect)),
 				SqlProductKey = Settings.Get(profileKey, nameof(AppProfile.SqlProductKey)),
@@ -177,6 +180,12 @@ sealed partial class MainController : ObservableObject
 				ApplicationId = Settings.Get(profileKey, nameof(AppProfile.ApplicationId)),
 				ClientSecret = Settings.Get(profileKey, nameof(AppProfile.ClientSecret))
 			};
+			// Special case for the Uri collection.
+			string[] uris = Settings.GetStrings(profileKey, nameof(AppProfile.CarbonServiceBaseUris), []);
+			foreach (string uri in uris)
+			{
+				prof.CarbonServiceBaseUris.Add(uri);
+			}
 			ObsProfiles!.Add(prof);
 		}
 		ObsProfiles!.ItemPropertyChanged += (s, e) =>
@@ -192,7 +201,17 @@ sealed partial class MainController : ObservableObject
 			if (SkipProps.Contains(e.PropertyName)) return;
 			var prof = (AppProfile)s!;
 			object? val = prof.GetType().GetProperty(e.PropertyName!)!.GetValue(prof);
-			Settings.Put(prof.ProfileKey, e.PropertyName, val);
+			if (val is ICollection<string> ss)
+			{
+				// Special case - string collection.
+				// QUESTION When the profile Uri collection changes, a set of N change events happen, one for each item in the new collection. Inefficient, but not a serious problem.
+				Settings.Put(prof.ProfileKey, e.PropertyName, ss.ToArray());
+			}
+			else
+			{
+				// Default case - hopefully a simple supported settings type.
+				Settings.Put(prof.ProfileKey, e.PropertyName, val);
+			}
 			// Needs manual update and save.
 			prof.LastUpdateUtc = DateTime.UtcNow;
 			Settings.Put(prof.ProfileKey, nameof(AppProfile.LastUpdateUtc), prof.LastUpdateUtc);
@@ -202,7 +221,6 @@ sealed partial class MainController : ObservableObject
 		};
 		string lastgroup = Settings.Get(null, nameof(AppProfile.ProfileKey), null);
 		SelectedProfile = ObsProfiles!.FirstOrDefault(p => p.ProfileKey == lastgroup) ?? ObsProfiles.FirstOrDefault();
-		OnPropertyChanged(nameof(SelectedProfile));
 	}
 
 	public void Shutdown()

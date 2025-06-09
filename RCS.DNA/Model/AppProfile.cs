@@ -1,4 +1,6 @@
-﻿using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace RCS.DNA.Model;
 
@@ -16,14 +18,31 @@ public enum AuthenticateSequence
 [CategoryOrder("RCS Service Provider", 3)]
 [CategoryOrder("Carbon Licence", 4)]
 [CategoryOrder("Azure", 5)]
-sealed class AppProfile(string profileKey) : NotifyBase
+[CategoryOrder("Session", 6)]
+sealed class AppProfile : NotifyBase
 {
+	public AppProfile(string profilKey)
+	{
+		ProfileKey = profilKey;
+		//CarbonServiceBaseUris.ListChanged += CarbonServiceBaseUris_ListChanged;
+		CarbonServiceBaseUris.CollectionChanged += CarbonServiceBaseUris_CollectionChanged;
+	}
+
+	private void CarbonServiceBaseUris_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+	{
+		OnPropertyChanged(nameof(CarbonServiceBaseUris));
+	}
+
+	//void CarbonServiceBaseUris_ListChanged(object? sender, EventArgs e)
+	//{
+	//	OnPropertyChanged(nameof(CarbonServiceBaseUris));
+	//}
 
 	/// <summary>
 	/// The Settings group key for the profile.
 	/// </summary>
 	[Browsable(false)]
-	public string ProfileKey { get; } = profileKey;
+	public string ProfileKey { get; }
 
 	#region Non-Edit Properties
 
@@ -370,7 +389,6 @@ sealed class AppProfile(string profileKey) : NotifyBase
 	[DisplayName("Sequence")]
 	[Description("Specifies the sequence in which Carbon engine licence authentication attempts will be made.")]
 	[DefaultValue(typeof(AuthenticateSequence), "IdThenName")]
-
 	public AuthenticateSequence CarbonLoginSequence
 	{
 		get => _carbonLoginSequence;
@@ -468,4 +486,27 @@ sealed class AppProfile(string profileKey) : NotifyBase
 	}
 
 	#endregion
+
+	[Category("Session")]
+	[DisplayName("Carbon Service Uris")]
+	[Description("A list of Carbon web service base Uris.")]
+	public ObservableCollection<string> CarbonServiceBaseUris { get; set; } = [];   // QUESTION Why does this have be both get and set for the property grid control?
+
+	string? _carbonServiceApiKey;
+	[Category("Session")]
+	[DisplayName("API Key")]
+	[Description("The API Key for access to the Carbon web service.")]
+	public string? CarbonServiceApiKey
+	{
+		get => _carbonServiceApiKey;
+		set
+		{
+			string? newval = string.IsNullOrEmpty(value) ? null : value;
+			if (_carbonServiceApiKey != newval)
+			{
+				_carbonServiceApiKey = newval;
+				OnPropertyChanged(nameof(CarbonServiceApiKey));
+			}
+		}
+	}
 }

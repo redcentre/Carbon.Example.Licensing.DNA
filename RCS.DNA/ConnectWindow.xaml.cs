@@ -1,4 +1,4 @@
-﻿namespace RCS.DNA;
+namespace RCS.DNA;
 
 partial class ConnectWindow : AppBaseWindow
 {

@@ -1,5 +1,4 @@
 using System.Collections.ObjectModel;
-using System.Text;
 using RCS.Licensing.Provider.Shared;
 
 namespace RCS.DNA.Model;

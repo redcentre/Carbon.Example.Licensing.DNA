@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Orthogonal.Common.Basic;
+using RCS.Carbon.Example.WebService.Common.DTO;
 using RCS.Carbon.Shared;
 using RCS.Licensing.Provider.Shared;
 using RCS.Licensing.Provider.Shared.Entities;
@@ -44,7 +46,9 @@ partial class MainController
 	[NotifyCanExecuteChangedFor(nameof(LoadNavigationCommand))]
 	[NotifyCanExecuteChangedFor(nameof(CloudCompareCommand))]
 	[NotifyCanExecuteChangedFor(nameof(RunReportCommand))]
-	string ? _busyMessage;
+	[NotifyCanExecuteChangedFor(nameof(LoadSessionsCommand))]
+	[NotifyCanExecuteChangedFor(nameof(ForceSessionsCommand))]
+	string? _busyMessage;
 
 	[ObservableProperty]
 	int _tabIndex;
@@ -341,4 +345,33 @@ partial class MainController
 	[ObservableProperty]
 	string? _newPassword;
 
+	[ObservableProperty]
+	string? _selectedCarbonServiceUri;
+
+	partial void OnSelectedCarbonServiceUriChanged(string? value)
+	{
+		Trace.WriteLine($"#### _selectedCarbonServiceUri {value}");
+		if (SelectedCarbonServiceIndex == 0)
+		{
+			ObsSessions = null;
+			return;
+		}
+		loadSessionsCommand.Execute(null);
+	}
+
+	[ObservableProperty]
+	ObservableCollection<SessionStatus>? _obsSessions;
+
+	[ObservableProperty]
+	[NotifyCanExecuteChangedFor(nameof(ForceSessionsCommand))]
+	SessionStatus[] _selectedSessions = [];
+
+	[ObservableProperty]
+	string[] _carbonServiceUriPicks;
+
+	[ObservableProperty]
+	[NotifyCanExecuteChangedFor(nameof(LoadSessionsCommand))]
+	int _selectedCarbonServiceIndex;
+
+	partial void OnSelectedCarbonServiceIndexChanged(int value) => Trace.WriteLine($"#### _carbonServiceUriPickIndex {value}");
 }

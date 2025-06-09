@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using RCS.DNA.Model;
 using RCS.DNA.Model.Extensions;
 using WF = System.Windows.Forms;
