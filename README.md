@@ -1,5 +1,7 @@
 # DNA Overview
 
+## Providers
+
 DNA is a Windows&trade; desktop program that performs powerful data management of Carbon compatible licensing databases. DNA internally uses the following two licensing provider packages to connect to the databases.
 
 1. **Example Licensing Provider**  
@@ -11,7 +13,7 @@ Both of the providers implement the `ILicensingProvider` interface, so DNA can l
 
 The following tables describe the options for each provider.
 
-**Example Licensing Provider**
+### Example Licensing Provider
 
 | Name | Description |
 | ---- | ---- |
@@ -21,7 +23,7 @@ The following tables describe the options for each provider.
 
 [git1]: https://github.com/redcentre/Carbon.Example.Licensing.Provider
 
-**Red Centre Licensing Provider**
+### Red Centre Licensing Provider
 
 | Name | Description |
 | ---- | ---- |
@@ -29,9 +31,16 @@ The following tables describe the options for each provider.
 | Service Base Address | The base Uri of the licensing web service. |
 | Timeout | The timeout seconds of the web service. Default is 30. |
 
+----
+
+## Technical Notes
+
+The original code for DNA was intended to be as *neutral* as possible, having no troublesome dependencies on external libraries. However, the [MVVM Toolkit][mvvmkit] has become quite popular recently, and it does dramatically reduce the amount of code required to implement notify properties and commands, so it's gradually being introduced into the code. Most notify properties are now simple fields annotated with `[ObservableProperty]`, but most of the commands are still `RoutedUICommand` bound to the main window in the traditional way. It's planned to convert most of the commands to `[RoutedCommand]` annotated methods, but it's estimated to be several hours of delicate work.
+
 *To be continued…*
 
 Last updated 29-May-2025
 
 [nug1]: https://www.nuget.org/packages/RCS.Licensing.Provider
 [rcs]: https://www.redcentresoftware.com/
+[mvvmkit]: https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/
