@@ -70,7 +70,7 @@
     <PackageReference Include="RCS.Licensing.Example.Provider" Version="9.2.4" />
     <PackageReference Include="System.Drawing.Common" Version="8.0.7" />
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
-    <PackageReference Include="System.Text.Json" Version="9.0.4" />
+    <PackageReference Include="System.Text.Json" Version="9.0.6" />
   </ItemGroup>
 
   <ItemGroup>
