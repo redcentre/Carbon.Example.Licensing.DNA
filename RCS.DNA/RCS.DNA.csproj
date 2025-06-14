@@ -57,18 +57,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Storage.Blobs" Version="12.24.0" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.24.1" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="5.0.124" />
     <PackageReference Include="ExcelDataReader.DataSet" Version="3.7.0" />
     <PackageReference Include="Orthogonal.Common.Basic" Version="3.2.4" />
     <PackageReference Include="Orthogonal.NSettings" Version="3.0.5" />
-    <PackageReference Include="RCS.Azure.StorageAccount" Version="2.0.4" />
-    <PackageReference Include="RCS.Azure.StorageAccount.Shared" Version="2.0.4" />
+    <PackageReference Include="RCS.Azure.StorageAccount" Version="2.0.5" />
+    <PackageReference Include="RCS.Azure.StorageAccount.Shared" Version="2.0.5" />
     <PackageReference Include="RCS.Carbon.Example.WebService.Common" Version="9.3.8" />
     <PackageReference Include="RCS.Carbon.Variables" Version="9.1.36" />
     <PackageReference Include="RCS.Licensing.Example.Provider" Version="9.2.4" />
-    <PackageReference Include="System.Drawing.Common" Version="8.0.7" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.6" />
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
     <PackageReference Include="System.Text.Json" Version="9.0.6" />
   </ItemGroup>
