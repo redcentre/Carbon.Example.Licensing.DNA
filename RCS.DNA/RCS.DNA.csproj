@@ -65,8 +65,8 @@
     <PackageReference Include="Orthogonal.NSettings" Version="3.0.5" />
     <PackageReference Include="RCS.Azure.StorageAccount" Version="2.0.5" />
     <PackageReference Include="RCS.Azure.StorageAccount.Shared" Version="2.0.5" />
-    <PackageReference Include="RCS.Carbon.Example.WebService.Common" Version="9.3.15" />
-    <PackageReference Include="RCS.Carbon.Variables" Version="9.1.41" />
+    <PackageReference Include="RCS.Carbon.Example.WebService.Common" Version="9.3.17" />
+    <PackageReference Include="RCS.Carbon.Variables" Version="9.1.43" />
     <PackageReference Include="RCS.Licensing.Example.Provider" Version="9.2.4" />
     <PackageReference Include="System.Drawing.Common" Version="9.0.6" />
     <PackageReference Include="System.Linq.Async" Version="6.0.3" />
