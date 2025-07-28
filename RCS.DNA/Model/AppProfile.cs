@@ -17,8 +17,8 @@ public enum AuthenticateSequence
 [CategoryOrder("SQL Database Provider", 2)]
 [CategoryOrder("RCS Service Provider", 3)]
 [CategoryOrder("Carbon Licence", 4)]
-[CategoryOrder("Azure", 5)]
-[CategoryOrder("Session", 6)]
+[CategoryOrder("Carbon Service", 5)]
+[CategoryOrder("Azure", 6)]
 sealed class AppProfile : NotifyBase
 {
 	public AppProfile(string profilKey)
@@ -120,6 +120,8 @@ sealed class AppProfile : NotifyBase
 
 	#endregion
 
+	#region Profile
+
 	string? _name;
 	[Category("Profile")]
 	[DisplayName("Name")]
@@ -154,6 +156,8 @@ sealed class AppProfile : NotifyBase
 			}
 		}
 	}
+
+	#endregion
 
 	#region DNA Login via RCS Service
 
@@ -404,6 +408,33 @@ sealed class AppProfile : NotifyBase
 
 	#endregion
 
+	#region Carbon Service
+
+	[Category("Carbon Service")]
+	[DisplayName("Carbon Service Uris")]
+	[Description("A list of Carbon web service base Uris.")]
+	public ObservableCollection<string> CarbonServiceBaseUris { get; set; } = [];   // QUESTION Why does this have be both get and set for the property grid control?
+
+	string? _carbonServiceApiKey;
+	[Category("Carbon Service")]
+	[DisplayName("API Key")]
+	[Description("The API Key for access to the Carbon web service.")]
+	public string? CarbonServiceApiKey
+	{
+		get => _carbonServiceApiKey;
+		set
+		{
+			string? newval = string.IsNullOrEmpty(value) ? null : value;
+			if (_carbonServiceApiKey != newval)
+			{
+				_carbonServiceApiKey = newval;
+				OnPropertyChanged(nameof(CarbonServiceApiKey));
+			}
+		}
+	}
+
+	#endregion
+
 	#region Azure
 
 	[Browsable(false)]
@@ -486,27 +517,4 @@ sealed class AppProfile : NotifyBase
 	}
 
 	#endregion
-
-	[Category("Session")]
-	[DisplayName("Carbon Service Uris")]
-	[Description("A list of Carbon web service base Uris.")]
-	public ObservableCollection<string> CarbonServiceBaseUris { get; set; } = [];   // QUESTION Why does this have be both get and set for the property grid control?
-
-	string? _carbonServiceApiKey;
-	[Category("Session")]
-	[DisplayName("API Key")]
-	[Description("The API Key for access to the Carbon web service.")]
-	public string? CarbonServiceApiKey
-	{
-		get => _carbonServiceApiKey;
-		set
-		{
-			string? newval = string.IsNullOrEmpty(value) ? null : value;
-			if (_carbonServiceApiKey != newval)
-			{
-				_carbonServiceApiKey = newval;
-				OnPropertyChanged(nameof(CarbonServiceApiKey));
-			}
-		}
-	}
 }
