@@ -8,7 +8,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>App.ico</ApplicationIcon>
-    <Version>2.0.18</Version>
+    <Version>2.0.19</Version>
     <Product>Data Navigation Azure</Product>
     <Authors>Red Centre Software</Authors>
     <Company>Red Centre Software</Company>
