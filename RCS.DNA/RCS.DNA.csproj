@@ -8,7 +8,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>App.ico</ApplicationIcon>
-    <Version>2.0.19</Version>
+    <Version>2.0.20</Version>
     <Product>Data Navigation Azure</Product>
     <Authors>Red Centre Software</Authors>
     <Company>Red Centre Software</Company>
@@ -61,13 +61,13 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="5.0.124" />
     <PackageReference Include="ExcelDataReader.DataSet" Version="3.7.0" />
-    <PackageReference Include="Orthogonal.Common.Basic" Version="3.2.4" />
+    <PackageReference Include="Orthogonal.Common.Basic" Version="3.2.5" />
     <PackageReference Include="Orthogonal.NSettings" Version="3.0.5" />
     <PackageReference Include="RCS.Azure.StorageAccount" Version="2.0.5" />
     <PackageReference Include="RCS.Azure.StorageAccount.Shared" Version="2.0.5" />
-    <PackageReference Include="RCS.Carbon.Example.WebService.Common" Version="9.3.22" />
-    <PackageReference Include="RCS.Carbon.Variables" Version="9.1.45" />
-    <PackageReference Include="RCS.Licensing.Example.Provider" Version="9.2.4" />
+    <PackageReference Include="RCS.Carbon.Example.WebService.Common" Version="9.3.23" />
+    <PackageReference Include="RCS.Carbon.Variables" Version="9.1.48" />
+    <PackageReference Include="RCS.Licensing.Example.Provider" Version="9.2.5" />
     <PackageReference Include="System.Drawing.Common" Version="9.0.6" />
     <PackageReference Include="System.Linq.Async" Version="6.0.3" />
     <PackageReference Include="System.Text.Json" Version="9.0.6" />
